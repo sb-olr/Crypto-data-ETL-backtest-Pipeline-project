@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
+# Usage: ./02-json-to-csv.py
 import sqlite3
 
 # db_name = ':memory:' # to make a in memory db
-db_name = 'crypto-data.db'
+db_name = 'data/crypto-data.db'
 
 # Connect to database; creates a new one if not existing
 conn = sqlite3.connect(db_name)
@@ -27,4 +29,5 @@ cur.execute(sql_create)
 conn.commit()
 
 # Close the connection
+cur.close()
 conn.close()
