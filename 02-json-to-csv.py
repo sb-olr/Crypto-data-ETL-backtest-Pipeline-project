@@ -2,7 +2,7 @@
 # Usage: ./02-json-to-csv.py
 import requests
 import icecream as ic
-import 00_utils as utils
+import utils
 
 def get_data(url):
     data=None
