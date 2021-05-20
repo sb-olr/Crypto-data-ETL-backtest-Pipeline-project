@@ -3,7 +3,7 @@
 import sqlite3
 
 # db_name = ':memory:' # to make a in memory db
-db_name = 'data/crypto-data.db'
+db_name = 'data/crypto-db.sqlite3'
 
 # Connect to database; creates a new one if not existing
 conn = sqlite3.connect(db_name)

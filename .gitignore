@@ -1,4 +1,5 @@
 # general
+*.sqlite3
 *.db
 *.csv
 
