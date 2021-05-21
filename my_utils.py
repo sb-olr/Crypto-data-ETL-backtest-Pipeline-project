@@ -11,6 +11,14 @@ def output_csv(outfile, headers, data):
         for row in data:
             csv_file.writerow(row)
 
+def get_list_from_csv(csv_name, skip_header=True):
+    with open(csv_name) as csv_file:
+        csv_reader = csv.reader(csv_file)
+        data = list(csv_reader)
+        if skip_header:
+            data=data[1:]
+        return data
+
 def main():
     print('test:')
     headers=('name', 'age')

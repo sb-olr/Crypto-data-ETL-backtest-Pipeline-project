@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# Usage: ./02-json-to-csv.py
+# Usage: ./01-create-db.py
 import sqlite3
-
+from icecream import ic
 # db_name = ':memory:' # to make a in memory db
 db_name = 'data/crypto-db.sqlite3'
 
@@ -23,6 +23,7 @@ sql_create = '''CREATE TABLE IF NOT EXISTS exchange_rates (
     value REAL,
     type TEXT
 )'''
+ic(sql_create)
 cur.execute(sql_create)
 
 # Commit the changes

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # Usage: ./02-json-to-csv.py
 import requests
-import icecream as ic
-import utils
+from icecream import ic
+import my_utils
 
 def get_data(url):
+    ic(url)
     data=None
     res = requests.get(url)
     res.raise_for_status()
@@ -31,7 +32,8 @@ def main():
     data = get_data(url)
     if data != None:
         shaped_data = reshape_data(data)
-        utils.output_csv(output_file, headers, shaped_data)
+        my_utils.output_csv(output_file, headers, shaped_data)
+        ic('CSV created')
 
 
 if __name__ == '__main__':
