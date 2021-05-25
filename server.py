@@ -26,7 +26,8 @@ def webhook():
     #     abort(418)
     
     if request.method == 'POST':
-        repo = git.Repo('Crypto-data-ETL-backtest-Pipeline-project')
+        # repo = git.Repo('Crypto-data-ETL-backtest-Pipeline-project')
+        repo = git.Repo('Crypto')
         origin = repo.remotes.origin
         origin.pull()
         return 'Done', 200
