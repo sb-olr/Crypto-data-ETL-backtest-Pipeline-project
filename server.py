@@ -1,9 +1,12 @@
 from flask import Flask, request, abort
+import os
 import git
 # import hmac
 # import hashlib
-import os
 app = Flask(__name__)
+
+#TODO : implement security check for push!
+
 # w_secret = os.environ['SECRET_TOKEN']
 # def is_valid_signature(x_hub_signature, data, private_key):
 #     # x_hub_signature and data are from the webhook payload
