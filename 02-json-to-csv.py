@@ -31,10 +31,13 @@ def reshape_data(data):
 
 def main():
     # config
-    ts=my_utils.get_epoch_timestamp()
-
     url = 'https://api.coingecko.com/api/v3/exchange_rates'
-    output_file = f'data/exchange-rates__{ts}.csv'
+    table_name = 'exchange_rates'
+    csv_dir = 'data/csv/'
+
+    ts = my_utils.get_epoch_timestamp()
+
+    output_file = f'{csv_dir}{table_name}__{ts}.csv'
     headers = ('cur_id', 'name', 'unit', 'value', 'type', 'date_dl')
 
     data = get_data(url)

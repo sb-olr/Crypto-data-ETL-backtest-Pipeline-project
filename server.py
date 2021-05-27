@@ -3,18 +3,28 @@ import os
 import git
 import hmac
 import hashlib
+from icecream import ic
+import my_db_utils
+
 app = Flask(__name__)
 
-w_secret = os.environ['SECRET_TOKEN']
+try:
+    w_secret = os.environ['SECRET_TOKEN']
+except:
+    ic("ignore on dev server:")
+    ic("SECRET_TOKEN for github actions not found in environment")
 
 @app.route('/')
 def hello():
     return 'hello world'
 
 
-@app.route('/view/<str:tablename>')
-def view_table(tablename):
-    return 'view table'+tablename
+@app.route('/view/<string:table_name>')
+def view_table(table_name):
+    db_name='data/TEST-crypto-db.sqlite3'
+    data = my_db_utils.get_all_records(db_name, table_name)
+    return str(data)
+
 
 
 

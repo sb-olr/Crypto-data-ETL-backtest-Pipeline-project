@@ -50,3 +50,27 @@ def insert_data(db_name, table_name, rows):
     # Close the connection
     cur.close()
     conn.close()
+
+
+
+def get_all_records(db_name, table_name):
+    # Connect to database
+    conn = sqlite3.connect(db_name)
+    # Create a cursor
+    cur=conn.cursor()
+
+    sql_select = 'SELECT * FROM ' + table_name + ';'
+
+    ic(sql_select)
+    cur.execute(sql_select)
+    rows = cur.fetchall()
+    ic('query executed')
+
+    # Commit the changes
+    conn.commit()
+
+    # Close the connection
+    cur.close()
+    conn.close()
+
+    return rows

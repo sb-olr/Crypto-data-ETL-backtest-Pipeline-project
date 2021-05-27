@@ -16,8 +16,11 @@ def csv_to_sqlite(csv_name, table_name):
 
 def main():
     table_name = 'exchange_rates'
-    csv_name = 'data/exchange-rates.csv'
+    csv_dir = 'data/csv/'
+    csv_file = 'exchange_rates__1622136698.csv'
+    csv_name = f'{csv_dir}{csv_file}'
     csv_to_sqlite(csv_name, table_name)
+    ic('imported ' + csv_file)
 
 
 if __name__ == '__main__':
