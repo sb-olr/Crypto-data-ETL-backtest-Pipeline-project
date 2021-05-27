@@ -7,7 +7,38 @@ app = Flask(__name__)
 
 w_secret = os.environ['SECRET_TOKEN']
 
+@app.route('/')
+def hello():
+    return 'hello world'
 
+
+@app.route('/view/exchange_rates')
+def view_table():
+    return 'view table'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### for auto update of code from Github; webhook
 def is_valid_signature(x_hub_signature, data, private_key):
     # x_hub_signature and data are from the webhook payload
     # private key is your webhook secret
@@ -36,11 +67,6 @@ def webhook():
         return 'Done', 200
     else:
         return '<h1>Method not supported</h1><p>use POST! </p>', 403
-
-
-@app.route('/')
-def hello():
-    return 'hello world'
 
 
 if __name__ == '__main__':

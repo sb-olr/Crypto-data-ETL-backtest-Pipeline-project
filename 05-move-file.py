@@ -8,23 +8,20 @@ source_dir = './data/'
 destination_dir = source_dir+'processed/'
 
 
-def main():
-    filename = 'test.txt'
+filename = 'exchange-rates.csv'
 
-    # create test file
-    my_utils.create_file(source_dir+filename)
+# create test file
+my_utils.create_file(source_dir+filename)
 
-    # use move function
-    my_utils.move_file(source_dir+filename)
+# use move function
+my_utils.move_file(source_dir+filename, destination_dir)
 
-    # test if file has moved
-    if os.path.isfile(destination_dir+filename):
-        # delete test file
-        my_utils.delete_file(destination_dir+filename)
-        ic('test passed')
-    else:
-        ic()
-        ic('test failed')
+# test if file has moved
+if os.path.isfile(destination_dir+filename):
+    # delete test file
+    # my_utils.delete_file(destination_dir+filename)
+    ic('test passed')
+else:
+    ic()
 
-if __name__ == '__main__':
-    main()
+    ic('test failed')

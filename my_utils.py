@@ -2,7 +2,12 @@ import datetime
 import csv
 import shutil
 import os
+import time
 from icecream import ic
+
+def get_epoch_timestamp(): return str(int(time.time()))
+
+def get_date_today(): return str(datetime.date.today())
 
 def get_date_yesterday(): return str(datetime.date.today() -
                                      datetime.timedelta(days=1))
@@ -35,7 +40,7 @@ def delete_file(filename):
     ic('file delete done')
 
 
-def move_file(filename, dest=destination_dir):
+def move_file(filename, dest):
     shutil.move(filename, dest)
     ic('move file done')
 

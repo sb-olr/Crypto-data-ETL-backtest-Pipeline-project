@@ -4,9 +4,10 @@ import requests
 from icecream import ic
 import my_utils
 
+
 def get_data(url):
     ic(url)
-    data=None
+    data = None
     res = requests.get(url)
     res.raise_for_status()
     if res.status_code == 200:
@@ -17,17 +18,24 @@ def get_data(url):
 
 def reshape_data(data):
     shaped_data = []
+
+    # today
+    dt_today = my_utils.get_date_today()
+
     for key in data.keys():
         row = data[key]
-        shaped_data.append((key, row['name'], row['unit'], row['value'], row['type']))
+        shaped_data.append(
+            (key, row['name'], row['unit'], row['value'], row['type'], dt_today))
     return shaped_data
 
 
 def main():
     # config
-    url='https://api.coingecko.com/api/v3/exchange_rates'
-    output_file='data/exchange-rate.csv'
-    headers=('cur_id', 'name', 'unit', 'value', 'type')
+    ts=my_utils.get_epoch_timestamp()
+
+    url = 'https://api.coingecko.com/api/v3/exchange_rates'
+    output_file = f'data/exchange-rates__{ts}.csv'
+    headers = ('cur_id', 'name', 'unit', 'value', 'type', 'date_dl')
 
     data = get_data(url)
     if data != None:
