@@ -56,6 +56,10 @@ def get_json_from_url(url):
         data = res.json()
     return data
 
+
+def pause():
+    os.system(f"read -rsp $'Press any key to continue...\n' -n 1 key")
+
 def main():
     print('test:')
     headers = ('name', 'age')
