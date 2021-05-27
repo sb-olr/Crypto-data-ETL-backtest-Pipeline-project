@@ -5,9 +5,9 @@ import hmac
 import hashlib
 app = Flask(__name__)
 
-#TODO : implement security check for push!
-
 w_secret = os.environ['SECRET_TOKEN']
+
+
 def is_valid_signature(x_hub_signature, data, private_key):
     # x_hub_signature and data are from the webhook payload
     # private key is your webhook secret
@@ -17,9 +17,10 @@ def is_valid_signature(x_hub_signature, data, private_key):
     mac = hmac.new(encoded_key, msg=data, digestmod=algorithm)
     return hmac.compare_digest(mac.hexdigest(), github_signature)
 
+
 @app.route('/git_pull', methods=['POST', 'GET'])
 def webhook():
-    if request.method=='GET':
+    if request.method == 'GET':
         return '<h1>Method not supported</h1><p>use POST! </p>', 403
 
     # First check credentials
@@ -27,7 +28,7 @@ def webhook():
     if not is_valid_signature(x_hub_signature, request.data, w_secret):
         print('Deploy signature failed: {sig}'.format(sig=x_hub_signature))
         abort(418)
-    
+
     if request.method == 'POST':
         repo = git.Repo('/home/mailsuj/Crypto')
         origin = repo.remotes.origin
@@ -35,6 +36,7 @@ def webhook():
         return 'Done', 200
     else:
         return '<h1>Method not supported</h1><p>use POST! </p>', 403
+
 
 @app.route('/')
 def hello():
