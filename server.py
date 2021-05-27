@@ -5,6 +5,7 @@ import hmac
 import hashlib
 from icecream import ic
 import my_db_utils
+import json
 
 app = Flask(__name__)
 
@@ -23,7 +24,7 @@ def hello():
 def view_table(table_name):
     db_name='data/TEST-crypto-db.sqlite3'
     data = my_db_utils.get_all_records(db_name, table_name)
-    return str(data)
+    return json.dumps(data)
 
 
 
