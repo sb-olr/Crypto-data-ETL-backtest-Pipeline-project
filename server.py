@@ -12,9 +12,9 @@ def hello():
     return 'hello world'
 
 
-@app.route('/view/exchange_rates')
-def view_table():
-    return 'view table'
+@app.route('/view/<str:tablename>')
+def view_table(tablename):
+    return 'view table'+tablename
 
 
 
