@@ -3,6 +3,7 @@ import sqlite3
 from icecream import ic
 import my_utils
 
+
 def create_table(db_name, table_name, table_fields):
     # Connect to database; creates a new one if not existing
     conn = sqlite3.connect(db_name)
@@ -53,12 +54,11 @@ def insert_data(db_name, table_name, rows):
     conn.close()
 
 
-
 def get_all_records(db_name, table_name):
     # Connect to database
     conn = sqlite3.connect(db_name)
     # Create a cursor
-    cur=conn.cursor()
+    cur = conn.cursor()
 
     sql_select = 'SELECT * FROM ' + table_name + ';'
 
@@ -77,9 +77,10 @@ def get_all_records(db_name, table_name):
     return rows
 
 
-def csv_to_sqlite(db_name, table_name, csv_name):
+def csv_to_sqlite(db_name, table_name, csv_file):
     # get data from csv
-    rows = my_utils.get_list_from_csv(csv_name)
-    ic(rows)
+    rows = my_utils.get_list_from_csv(csv_file)
+    ic('Rows available:')
+    ic(len(rows))
     insert_data(db_name, table_name, rows)
     ic('imported ' + csv_file)

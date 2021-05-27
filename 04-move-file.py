@@ -14,6 +14,5 @@ csv_file = f'{csv_dir}{table_name}.csv'
 # use move function
 if os.path.isfile(csv_file):
     my_utils.move_file(csv_file, processed_dir)
-    ic('csv file moved')
 else:
     ic('File not found!')
