@@ -1,4 +1,5 @@
 import datetime
+import requests
 import csv
 import shutil
 import os
@@ -19,6 +20,7 @@ def output_csv(outfile, headers, data):
         csv_file.writerow(headers)
         for row in data:
             csv_file.writerow(row)
+        ic('CSV created')
 
 
 def get_list_from_csv(csv_name, skip_header=True):
@@ -44,6 +46,15 @@ def move_file(filename, dest):
     shutil.move(filename, dest)
     ic('move file done')
 
+
+def get_json_from_url(url):
+    ic(url)
+    data = None
+    res = requests.get(url)
+    res.raise_for_status()
+    if res.status_code == 200:
+        data = res.json()
+    return data
 
 def main():
     print('test:')

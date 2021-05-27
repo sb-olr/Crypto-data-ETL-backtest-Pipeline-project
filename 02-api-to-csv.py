@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
 # Usage: ./02-json-to-csv.py
-import requests
 from icecream import ic
 import my_utils
+from config import CONFIG
 
 
 def get_data(url):
-    ic(url)
-    data = None
-    res = requests.get(url)
-    res.raise_for_status()
-    if res.status_code == 200:
-        data = res.json()['rates']
-
+    data = my_utils.get_json_from_url(url)['rates']
     return data
 
 
@@ -31,20 +25,20 @@ def reshape_data(data):
 
 def main():
     # config
-    url = 'https://api.coingecko.com/api/v3/exchange_rates'
-    table_name = 'exchange_rates'
-    csv_dir = 'data/csv/'
-
+    table_name = CONFIG['table_name']
+    url = CONFIG['url']
+    csv_dir = CONFIG['csv_dir']
+    
     ts = my_utils.get_epoch_timestamp()
+    csv_file = f'{csv_dir}{table_name}.csv'
+    # csv_file = f'{csv_dir}{table_name}__{ts}.csv' # todo: use unique names
 
-    output_file = f'{csv_dir}{table_name}__{ts}.csv'
-    headers = ('cur_id', 'name', 'unit', 'value', 'type', 'date_dl')
+    headers = CONFIG['headers']
 
     data = get_data(url)
     if data != None:
         shaped_data = reshape_data(data)
-        my_utils.output_csv(output_file, headers, shaped_data)
-        ic('CSV created')
+        my_utils.output_csv(csv_file, headers, shaped_data)
 
 
 if __name__ == '__main__':

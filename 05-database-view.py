@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-#Usage: ./03-csv-to-sqlite.py
+# Usage: ./05-database-view.py
 from icecream import ic
 import my_db_utils
 from config import CONFIG
 
 db_name = CONFIG['data_dir']+CONFIG['db_file']
 table_name = CONFIG['table_name']
-csv_dir = CONFIG['csv_dir']
-csv_file = f'{csv_dir}{table_name}.csv'
 
-my_db_utils.csv_to_sqlite(db_name, table_name, csv_file)
+data = my_db_utils.get_all_records(db_name, table_name)
+ic(data)

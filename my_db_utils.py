@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 import sqlite3
 from icecream import ic
-
+import my_utils
 
 def create_table(db_name, table_name, table_fields):
     # Connect to database; creates a new one if not existing
@@ -74,3 +75,11 @@ def get_all_records(db_name, table_name):
     conn.close()
 
     return rows
+
+
+def csv_to_sqlite(db_name, table_name, csv_name):
+    # get data from csv
+    rows = my_utils.get_list_from_csv(csv_name)
+    ic(rows)
+    insert_data(db_name, table_name, rows)
+    ic('imported ' + csv_file)
