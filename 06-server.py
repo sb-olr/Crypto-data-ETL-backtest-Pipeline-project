@@ -20,7 +20,7 @@ def hello():
     return 'hello world'
 
 
-@app.route('/view/<string:table_name>')
+@app.route('/api/view/<string:table_name>')
 def view_table(table_name):
     db_name='data/TEST-crypto-db.sqlite3'
     data = my_db_utils.get_all_records(db_name, table_name)

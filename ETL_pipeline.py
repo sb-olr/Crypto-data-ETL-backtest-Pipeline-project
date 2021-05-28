@@ -4,7 +4,7 @@ from os import system
 from my_utils import pause
 from icecream import ic
 
-DEMO = False
+DEMO = True
 
 
 # step 0: setup
