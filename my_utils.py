@@ -56,6 +56,8 @@ def get_json_from_url(url):
         data = res.json()
     return data
 
+def curl_json_from_url(url, file_name):
+    os.system(f'curl {url} | jq > {file_name}')
 
 def pause():
     os.system(f"read -rsp $'Press any key to continue...\n' -n 1 key")

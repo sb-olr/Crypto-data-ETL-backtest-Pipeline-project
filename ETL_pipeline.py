@@ -62,7 +62,7 @@ if DEMO:
 # step 6: Check that sever.py is running
 if DEMO:
     system('clear')
-    ic('Check that sever.py is running')
+    ic('Ensure that server.py is running')
     pause()
 
 
@@ -70,8 +70,10 @@ if DEMO:
 if DEMO:
     system('clear')
     ic('Check our served json')
-    system('curl http://0.0.0.0:5000/view/exchange_rates | jq > data/demo.json')
+    system('./07-local-api-view.py')
+    # curl http://0.0.0.0:5000/view/exchange_rates | jq > data/demo.json
     pause()
+    system('tree data')
     system('cat data/demo.json')
     pause()
 

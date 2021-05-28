@@ -2,6 +2,7 @@
 *.sqlite3
 *.db
 *.csv
+demo.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
