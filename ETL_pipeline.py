@@ -71,7 +71,7 @@ if DEMO:
     system('clear')
     ic('Check our served json')
     system('./07-local-api-view.py')
-    # curl http://0.0.0.0:5000/view/exchange_rates | jq > data/demo.json
+    # curl http://0.0.0.0:5000/api/view/exchange_rates | jq > data/demo.json
     pause()
     system('tree data')
     system('cat data/demo.json')
